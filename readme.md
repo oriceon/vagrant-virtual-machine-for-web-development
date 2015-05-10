@@ -124,6 +124,9 @@ sudo apt-get install nginx
 
 Open `http://192.168.56.101/` and see nginx welcome page!
 
+Remember that Virtual Machine shared folder with Windows is /vagrant/shared/www
+Use it on document root for your vhost files.
+
 
 #Install last MySQL Percona Server (version 5.6.24)
 
