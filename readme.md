@@ -172,4 +172,6 @@ to stop vagrant do:
 To remove virtual machine you could do `vagrant destroy`
 
 
+You could install how many Virtual Machines you want with different configurations
+To custom your one, just drag puphpet/config.yaml file to https://puphpet.com/ site to preload my config.
 
