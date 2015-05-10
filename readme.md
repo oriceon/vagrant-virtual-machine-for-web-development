@@ -174,6 +174,9 @@ to stop vagrant do:
 
 `vagrant halt` to shutdown virtual machine
 
+##To start server again just run `vagrant up`
+
+
 To remove virtual machine you could do `vagrant destroy`
 
 
