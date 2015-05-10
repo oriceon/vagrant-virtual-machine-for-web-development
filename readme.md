@@ -177,7 +177,7 @@ to stop vagrant do:
 ##To start server again just run `vagrant up`
 
 
-To remove virtual machine you could do `vagrant destroy`
+To remove virtual machine you could do `vagrant destroy` and enter in ssh with `vagrant ssh`
 
 
 You could install how many Virtual Machines you want with different configurations
