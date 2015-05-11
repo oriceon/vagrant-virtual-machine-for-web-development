@@ -169,6 +169,64 @@ secure mysql installation
 `sudo /usr/bin/mysql_secure_installation`
 
 
+#Install phpMyAdmin
+
+Open http://www.phpmyadmin.net/ and download last version
+
+Extract files to Windows shared/www/phpMyAdmin
+
+**Create vhost for pma.dev**
+
+`sudo nano /etc/nginx/conf.d/pma.conf`
+
+and add config
+
+```
+server {
+
+    listen  80;
+    server_name pma.dev www.pma.dev;
+    set $root_path '/vagrant/shared/www/phpMyAdmin';
+    root $root_path;
+
+    index index.php index.html index.htm;
+
+    try_files $uri $uri/ @rewrite;
+
+    location ~ \.php {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index /index.php;
+
+        include /etc/nginx/fastcgi_params;
+
+        fastcgi_split_path_info       ^(.+\.php)(/.+)$;
+        fastcgi_param PATH_INFO       $fastcgi_path_info;
+        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
+        root $root_path;
+        expires 0;
+        break;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+}
+```
+
+then reload nginx
+
+`sudo service nginx reload`
+
+and test if `http://pma.dev/` is workin` ok!
+
+Login with root and password you provided to mysql server installation
+
+
 #Other
 
 to stop vagrant do:
