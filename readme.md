@@ -188,6 +188,8 @@ server {
     server_name pma.dev www.pma.dev;
     set $root_path '/vagrant/shared/www/phpMyAdmin';
     root $root_path;
+    
+    sendfile off;
 
     index index.php index.html index.htm;
 
@@ -225,6 +227,23 @@ then reload nginx
 and test if `http://pma.dev/` is workin` ok!
 
 Login with root and password you provided to mysql server installation
+
+
+##Corrupted or non-updating files VirtualBox bug
+
+If you're using the VirtualBox provider, then VirtualBox shared folders are the default synced folder type. These synced folders use the VirtualBox shared folder system to sync file changes from the guest to the host and vice versa.
+
+There is a VirtualBox bug related to sendfile which can result in corrupted or non-updating files. You should deactivate sendfile in any web servers config files you may be running.
+
+**In Nginx:**
+
+`sendfile off;`
+
+**In Apache:**
+
+`EnableSendfile Off`
+
+See vagrant docs: http://docs.vagrantup.com/v2/synced-folders/virtualbox.html
 
 
 #Other
