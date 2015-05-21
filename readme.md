@@ -263,3 +263,35 @@ To remove virtual machine you could do `vagrant destroy`
 You could install how many Virtual Machines you want with different configurations
 To custom your one, just drag puphpet/config.yaml file to https://puphpet.com/ site to preload my config.
 
+
+##Fix some issues with starting vagrant
+
+Sometimes after some upgrades of your ubuntu, when you want to start machine with vagrant up, you receive some errors like:
+
+`Vagrant exited after cleanup due to external interrupt.`
+
+Open **Vagrantfile** with your editor and after `Vagrant.require_version '>= 1.6.0` line add:
+
+```
+Vagrant.configure('2') do |config|
+
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = false
+  end
+
+end
+```
+
+and set **vb.gui** to **true** to boot vagrant with prompt of virtualbox window.
+There, fix what you should to (in most cases you should confirm some changes in ubuntu boot system).
+
+Ubuntu login data are:
+
+user: vagrant
+pass: vagrant
+
+
+After that, close virtualbox window and set back **vb.gui** to **false**
+
+Now you could see if vagrant starts in your console.
+
