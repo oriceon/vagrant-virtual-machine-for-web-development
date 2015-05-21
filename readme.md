@@ -287,9 +287,10 @@ There, fix what you should to (in most cases you should confirm some changes in 
 
 Ubuntu login data are:
 
+```
 user: vagrant
 pass: vagrant
-
+```
 
 After that, close virtualbox window and set back **vb.gui** to **false**
 
