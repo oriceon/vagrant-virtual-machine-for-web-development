@@ -288,7 +288,6 @@ There, fix what you should to (in most cases you should confirm some changes in 
 Ubuntu login data are:
 
 user: vagrant
-
 pass: vagrant
 
 
