@@ -290,6 +290,10 @@ xdebug:
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
+        xdebug.max_nesting_level: '500'
+        xdebug.scream: '1'
+        xdebug.cli_color: '1'
+        xdebug.show_local_vars: '1'
 blackfire:
     install: '0'
     settings:
