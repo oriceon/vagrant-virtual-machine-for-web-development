@@ -27,10 +27,18 @@ Vagrant will share /var/www folder with Windows shared/www
  
   `serve domain.dev domainFolderName`
 
-  will add and enable vhost in /etc/nginx/sites-available and /etc/nginx/sites-enabled with document root /vagrant/shared/www/**domainFolderName**
+  will add and enable vhost in /etc/nginx/sites-available and /etc/nginx/sites-enabled with document root
+  /vagrant/shared/www/**domainFolderName**
 
 
 #Enter in ssh
 
 `vagrant ssh`
+
+
+#Wiki
+
+If you want to use your custom puPHPet files and install separately you could see [documentation here](https://github.com/oriceon/vagrant-virtual-machine-for-web-development/wiki)
+
+
 
