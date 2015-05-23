@@ -15,9 +15,10 @@ echo "--- Updating packages list ---"
 
 unset UCF_FORCE_CONFFOLD
 export UCF_FORCE_CONFFNEW=YES
-ucf --purge /boot/grub/menu.lst
+sudo ucf --purge /boot/grub/menu.lst
 
 export DEBIAN_FRONTEND=noninteractive
+
 sudo apt-get update -qq
 #sudo apt-get upgrade -y --force-yes -qq
 sudo apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
@@ -26,6 +27,7 @@ sudo apt-get install -y dos2unix
 
 
 echo "--- Installing Nginx ---"
+
 sudo wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 sudo rm nginx_signing.key
@@ -36,7 +38,7 @@ echo "--- Modify nginx vhost directory ---"
 
 sudo rm -rf /etc/nginx/conf.d
 
-sed -i 's/include \/etc\/nginx\/conf\.d\/\*\.conf;/include \/etc\/nginx\/sites-enabled\/\*;/' /etc/nginx/nginx.conf
+sudo sed -i 's/include \/etc\/nginx\/conf\.d\/\*\.conf;/include \/etc\/nginx\/sites-enabled\/\*;/' /etc/nginx/nginx.conf
 
 sudo mkdir /etc/nginx/sites-available 2>/dev/null
 sudo mkdir /etc/nginx/sites-enabled 2>/dev/null
@@ -59,6 +61,9 @@ function serve() {
 		echo "  serve domain path"
 	fi
 }
+
+alias laravel='~/.composer/vendor/bin/laravel'
+alias lumen='~/.composer/vendor/bin/lumen'
 EOF
 
 source ~/.bash_aliases
@@ -113,7 +118,7 @@ sudo unzip -q -o "$pmaRoot"phpmyadmin.zip -d "$pmaRoot"
 sudo mv "$pmaRoot"phpMyAdmin*/* "$pmaRoot"
 
 sudo rm "$pmaRoot"phpmyadmin.zip
-sudo rm "$pmaRoot"phpMyAdmin*/
+sudo rm -rf "$pmaRoot"phpMyAdmin-*/
 
 serve pma.dev phpMyAdmin
 
@@ -122,3 +127,13 @@ serve pma.dev phpMyAdmin
 #if [ ! -n "$(grep "^github.com " /home/vagrant/.ssh/known_hosts)" ]; then ssh-keyscan github.com >> /home/vagrant/.ssh/known_hosts 2>/dev/null; fi
 
 #git clone git@github.com:phpmyadmin/phpmyadmin.git /vagrant/shared/www/phpMyAdmin2
+
+
+echo "--- Getting Laravel installer ---"
+
+sudo composer global require "laravel/installer=~1.1"
+
+
+echo "--- Getting Lumen Laravel installer ---"
+
+sudo composer global require "laravel/lumen-installer=~1.0"
